@@ -86,6 +86,11 @@ round 2 (`studio/questions/brief-R1.md`, `studio/questions/brief-R2.md`).
   text in code.
 - `03-look` (standard, frontend): fonts, colours, layout, the footer's look, and hover and focus
   states. It replaces `02-look`, which is superseded and won't run. Still two tickets.
+- After the G4-1 rejection, owner rework from the owner's notes (not new build scope):
+  - `04-favicon` (standard, frontend): a clay-brown K on off-white at `/favicon.ico`, so the page
+    loads with no console error.
+  - `05-house-rename` (mechanical, frontend-2): `@house` renamed to kiln-and-clay in `README.md`,
+    `Dockerfile`, `smoke/run.ts` and `infra/README.md`. `AGENTS.md` stays as it is.
 
 ## Schedule
 
