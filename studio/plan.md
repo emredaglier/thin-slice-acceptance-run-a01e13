@@ -36,7 +36,8 @@ round 2 (`studio/questions/brief-R1.md`, `studio/questions/brief-R2.md`).
 3. QA: opens when G4 is approved. Ends with the QA report. QA fixes (`qa-blocker`, or `gate-safe`
    from a named finding) don't count toward the two-ticket cap.
 4. Launch: **G5 launch**, judged on the studio preview. G5 approval is the go; the release tag
-   follows. Nothing is deployed.
+   follows. Nothing is deployed. Done: G5-1 approved and tagged `v1.0.0` on 2026-11-14
+   (`studio/meetings/M2.md`).
 
 ## Gate criteria
 
