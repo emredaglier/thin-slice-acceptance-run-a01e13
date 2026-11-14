@@ -2,6 +2,9 @@ import type { Metadata } from 'next'
 
 import { content } from '../content'
 
+// Rendered per request: a prerendered page is sent with s-maxage=31536000 (ADR-0006).
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
   title: content.title,
   description: content.hero.pitch,
