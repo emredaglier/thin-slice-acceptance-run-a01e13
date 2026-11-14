@@ -32,7 +32,7 @@ round 2 (`studio/questions/brief-R1.md`, `studio/questions/brief-R2.md`).
 ## Phases and gates
 
 1. Brief intake: done (rounds 1 and 2).
-2. Build: tickets 01 and 02, in order. Ends at **G4 working build**, judged on the studio preview.
+2. Build: tickets 01 and 03 (03 replaces 02), in order. Ends at **G4 working build**, judged on the studio preview.
 3. QA: opens when G4 is approved. Ends with the QA report. QA fixes (`qa-blocker`, or `gate-safe`
    from a named finding) don't count toward the two-ticket cap.
 4. Launch: **G5 launch**, judged on the studio preview. G5 approval is the go; the release tag
@@ -42,7 +42,7 @@ round 2 (`studio/questions/brief-R1.md`, `studio/questions/brief-R2.md`).
 
 ### G4 working build
 
-- Tickets 01 and 02 are merged, and `pnpm lint`, `pnpm typecheck`, `pnpm test` and
+- Tickets 01 and 03 are merged, and `pnpm lint`, `pnpm typecheck`, `pnpm test` and
   `pnpm check:assets` pass on the merged work.
 - The page shows every section in the order above, with the owner's facts: three classes, each
   with its name, length and price as `€NN`, and "Prices include VAT."
@@ -84,8 +84,8 @@ round 2 (`studio/questions/brief-R1.md`, `studio/questions/brief-R2.md`).
 
 - `01-page-and-content` (standard, frontend): project setup, then the page's structure and all its
   text in code.
-- `02-look` (standard, frontend): fonts, colours, layout, the footer's look, and hover and focus
-  states.
+- `03-look` (standard, frontend): fonts, colours, layout, the footer's look, and hover and focus
+  states. It replaces `02-look`, which is superseded and won't run. Still two tickets.
 
 ## Schedule
 
@@ -99,7 +99,7 @@ Worked back from the 2026-12-01 launch the owner set in round 1:
 - The launch on 2026-12-01 is the release tag.
 - G5 on 2026-11-27 leaves two working days of slack before it.
 - QA runs 2026-11-23 to 2026-11-26, after the owner's G4 review.
-- Build runs 2026-11-16 to 2026-11-19, ticket 01 then ticket 02.
+- Build runs 2026-11-16 to 2026-11-19, ticket 01 then ticket 03.
 
 The start is 2026-11-16 and today is 2026-11-14, so the schedule fits.
 

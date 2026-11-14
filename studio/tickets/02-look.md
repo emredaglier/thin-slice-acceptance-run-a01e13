@@ -6,6 +6,10 @@ assignee: frontend
 
 # 02: The look
 
+**Superseded by `03-look` (2026-11-14, owner's request). Don't run this ticket.** It was handed
+back as stuck only because ticket 01 hadn't merged yet. Ticket 03 has the same scope and starts
+from the merged `main`.
+
 Give the page from ticket 01 its look: warm and calm, mobile first, type and colour only. This
 ticket needs ticket 01 merged first. Plan: `studio/plan.md`.
 
