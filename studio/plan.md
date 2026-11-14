@@ -91,6 +91,11 @@ round 2 (`studio/questions/brief-R1.md`, `studio/questions/brief-R2.md`).
     loads with no console error.
   - `05-house-rename` (mechanical, frontend-2): `@house` renamed to kiln-and-clay in `README.md`,
     `Dockerfile`, `smoke/run.ts` and `infra/README.md`. `AGENTS.md` stays as it is.
+- QA fixes after G4 approval, from `studio/qa/rubric-2.md` (gate-safe, outside the cap):
+  - `06-mail-link-target` (standard, frontend): the mail link is 21 px high at phone width. It
+    needs at least 24 × 24 px (WCAG 2.5.8).
+  - `07-html-not-edge-cached` (standard, frontend-2): the HTML of `/` carries
+    `s-maxage=31536000`, against ADR-0006.
 
 ## Schedule
 
