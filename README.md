@@ -82,7 +82,7 @@ run it again with the change and compare.
 
 1. Create the project repo from the template, then fill in `infra/project.env` and follow the
    checklist at the top of `infra/README.md`.
-2. Rename the `@house/*` scope in every `package.json`, import and `transpilePackages` list. Also
+2. Use your project's own workspace scope in every `package.json`, import and `transpilePackages` list (this repo uses `@kiln-and-clay/*`; rename it when you start a different project). Also
    rename the `house:motion-fault` event (`packages/motion/src/fault.ts`), the email adapter's
    `defaultFromName` (`packages/cms-config/src/config.ts`) and the `'Project name'` title in
    `apps/web/src/app/layout.tsx`. Fill in `reportFault` in `apps/web/src/lib/observability.ts`

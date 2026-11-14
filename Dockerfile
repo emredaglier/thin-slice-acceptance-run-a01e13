@@ -7,7 +7,7 @@
 #   docker build --target web -t <project>/web:local .
 #   docker build --target cms -t <project>/cms:local .
 #   docker build --target migrate -t <project>/migrate:local .
-# Workspaces are selected by folder (`--filter ./apps/web`), so renaming the @house scope needs no
+# Workspaces are selected by folder (`--filter ./apps/web`), so a workspace scope rename needs no
 # change here.
 
 ARG NODE_VERSION=24.22.2

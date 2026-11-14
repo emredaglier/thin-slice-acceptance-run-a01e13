@@ -103,7 +103,7 @@ try {
     // A production cms config refuses to load without it (CSRF); nothing is served here.
     CMS_ORIGINS: 'http://127.0.0.1',
   }
-  // Workspaces are picked by folder, so renaming the @house scope needs no change here. The `--`
+  // Workspaces are picked by folder, so a workspace scope rename needs no change here. The `--`
   // matters: `payload run` swallows the flags before it.
   await run('pnpm', ['--filter', './apps/cms', 'exec', 'payload', 'migrate'], { env: seedEnv })
   await run('pnpm', ['--filter', './apps/cms', 'exec', 'payload', 'run', 'scripts/seed.ts', '--'], {
