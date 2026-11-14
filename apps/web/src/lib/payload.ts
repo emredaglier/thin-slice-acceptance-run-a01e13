@@ -1,4 +1,4 @@
-import { buildSiteConfig, siteConfigOptionsFromEnv } from '@house/cms-config'
+import { buildSiteConfig, siteConfigOptionsFromEnv } from '@kiln-and-clay/cms-config'
 import { getPayload, type Payload } from 'payload'
 
 /**

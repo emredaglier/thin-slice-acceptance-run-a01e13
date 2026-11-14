@@ -1,6 +1,6 @@
 /**
  * Cache tag names shared by `cms` (which sends them) and `web` (which tags its cached reads).
- * Pure strings, no Payload imports, so `web` can import `@house/cms-config/tags` cheaply.
+ * Pure strings, no Payload imports, so `web` can import `@kiln-and-clay/cms-config/tags` cheaply.
  */
 
 /** Tag for a whole global, e.g. `global:site`. */

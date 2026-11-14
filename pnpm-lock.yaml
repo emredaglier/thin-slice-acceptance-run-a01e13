@@ -54,7 +54,7 @@ importers:
 
   apps/cms:
     dependencies:
-      '@house/cms-config':
+      '@kiln-and-clay/cms-config':
         specifier: workspace:*
         version: link:../../packages/cms-config
       '@payloadcms/next':
@@ -100,13 +100,13 @@ importers:
 
   apps/web:
     dependencies:
-      '@house/cms-config':
+      '@kiln-and-clay/cms-config':
         specifier: workspace:*
         version: link:../../packages/cms-config
-      '@house/motion':
+      '@kiln-and-clay/motion':
         specifier: workspace:*
         version: link:../../packages/motion
-      '@house/ui':
+      '@kiln-and-clay/ui':
         specifier: workspace:*
         version: link:../../packages/ui
       '@payloadcms/db-sqlite':

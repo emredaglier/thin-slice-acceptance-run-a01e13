@@ -1,12 +1,10 @@
-# @house/motion
+# @kiln-and-clay/motion
 
 Shared motion plumbing and the written contract for WebGL effects. The root entry has no React and
 is safe to import on the server: every browser-reading helper returns an inert value when there is
-no `window` or `document`. React hooks live in `@house/motion/react`. The effects library starts
-empty apart from one small example (`@house/motion/glow`); a project adds its own effects, and
-each follows the contract below.
+no `window` or `document`. React hooks live in `@kiln-and-clay/motion/react`. The effects library starts empty; a project adds its own effects, and each follows the contract below.
 
-## `@house/motion`
+## `@kiln-and-clay/motion`
 
 - `addTick(fn)` / `removeTick(fn)`: `gsap.ticker` with per-callback isolation. The first throw is
   logged; after 5 failures in a row the callback is removed and a `ticker-callback-removed` fault
@@ -26,7 +24,7 @@ each follows the contract below.
   properties. The lists start with the one flag the idle watcher sets (`saver`) and no vars: a
   project adds its names to the lists, and a misspelt name then fails the typecheck. CSS reacts to
   the attributes, so server and client markup never differ.
-- `reportMotionFault(kind, detail)` / `MOTION_FAULT_EVENT`: dispatches `house:motion-fault` (kinds
+- `reportMotionFault(kind, detail)` / `MOTION_FAULT_EVENT`: dispatches `kiln-and-clay:motion-fault` (kinds
   `ticker-callback-removed`, `gl-context-lost`, `gl-error`). Every GL effect calls it. Rename the
   event with the project (see the root README).
 - `prefersReducedMotion()`, `hasFinePointer()`, `hasWebGL2()`, `supportsViewTransitions()`:
@@ -43,7 +41,7 @@ each follows the contract below.
   `smoothToward` is frame-rate independent and snaps onto the target, so a loop can tell when it
   has settled.
 
-## `@house/motion/react`
+## `@kiln-and-clay/motion/react`
 
 - `useIdle()`: true while the visitor is idle (shared watcher, timeouts from `configureIdle`).
 - `useTick(fn)`: runs `fn` on the safe ticker while mounted.
@@ -90,21 +88,3 @@ Also, for effects that run a loop:
   read falls back to the colour you passed rather than to black.
 - Cap the device pixel ratio, allocate nothing per frame, and keep CPU and shader maths that must
   agree (a falloff curve, say) side by side with a comment saying so.
-
-## The example effect: `@house/motion/glow`
-
-A soft glow that follows the pointer, small enough to read in one sitting and a template for a new
-effect:
-
-- `createGlowStage(canvas, opts?)` -> `{ ok, draw(state), resize(), setColor(), dispose() }`: the
-  WebGL2 stage. Rules 1, 2 and 4 live here (`stage.ts`, tested with a fake GL context). The colour
-  comes from the `--glow-color` custom property (grey when unset).
-- `mountGlow(host, opts?)` -> `{ ok, setActive(active), setColor(), dispose() }`: puts a fresh
-  decorative canvas in front of the host's content, follows the pointer on the safe ticker, stops
-  drawing once settled, honours `reducedMotion`, and leaves the host untouched when `ok` is false.
-  Rule 3 lives here (`mount.ts`).
-- The pure maths (`falloff`, `followPoint`, `canvasSize`, `toCanvasPoint`) is in `math.ts` and is
-  tested with properties (bounds, monotonic, symmetric, never overshoots) plus worked examples.
-- It is used on `/examples/glow` in `apps/web`, which is also the page the perf suite measures. A
-  project that does not want the example deletes `packages/motion/src/glow`, `apps/web/src/app/examples`
-  and the `glow-sweep` scenario in `perf/scenarios.ts`, and its `./glow` export.

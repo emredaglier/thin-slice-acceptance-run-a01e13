@@ -27,4 +27,4 @@ follow.
 
 ## Consequences
 A new project installs, passes `pnpm check` and serves a placeholder page on its first day. The
-workspace package scope (`@house/*`) is renamed per project.
+workspace package scope (`@kiln-and-clay/*`) is renamed per project.

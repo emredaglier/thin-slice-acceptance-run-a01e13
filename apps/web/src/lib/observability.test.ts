@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { MOTION_FAULT_EVENT, reportMotionFault } from '@house/motion'
+import { MOTION_FAULT_EVENT, reportMotionFault } from '@kiln-and-clay/motion'
 import { describe, expect, it } from 'vitest'
 
 import { startMotionFaultReporting } from './observability'
@@ -12,15 +12,15 @@ describe('startMotionFaultReporting', () => {
     const target = new EventTarget()
     const seen: [string, string | undefined][] = []
     startMotionFaultReporting(target, (kind, detail) => seen.push([kind, detail]))
-    fault(target, { kind: 'gl-error', detail: 'glow' })
-    fault(target, { kind: 'gl-error', detail: 'glow' })
-    fault(target, { kind: 'gl-context-lost', detail: 'glow' })
+    fault(target, { kind: 'gl-error', detail: 'example' })
+    fault(target, { kind: 'gl-error', detail: 'example' })
+    fault(target, { kind: 'gl-context-lost', detail: 'example' })
     fault(target, { kind: 'gl-error' })
     fault(target, null)
     fault(target, { detail: 'no kind' })
     expect(seen).toEqual([
-      ['gl-error', 'glow'],
-      ['gl-context-lost', 'glow'],
+      ['gl-error', 'example'],
+      ['gl-context-lost', 'example'],
       ['gl-error', undefined],
     ])
   })
@@ -30,7 +30,7 @@ describe('startMotionFaultReporting', () => {
     const seen: string[] = []
     const stop = startMotionFaultReporting(target, (kind) => seen.push(kind))
     stop()
-    fault(target, { kind: 'gl-error', detail: 'glow' })
+    fault(target, { kind: 'gl-error', detail: 'example' })
     expect(seen).toEqual([])
   })
 
@@ -46,8 +46,8 @@ describe('startMotionFaultReporting', () => {
   it('hears what the motion package reports', () => {
     const seen: string[] = []
     const stop = startMotionFaultReporting(window, (kind, detail) => seen.push(`${kind}/${detail}`))
-    reportMotionFault('gl-error', 'glow')
+    reportMotionFault('gl-error', 'example')
     stop()
-    expect(seen).toEqual(['gl-error/glow'])
+    expect(seen).toEqual(['gl-error/example'])
   })
 })

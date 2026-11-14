@@ -1,5 +1,5 @@
 import config from '@payload-config'
-import { runSeed } from '@house/cms-config/seed'
+import { runSeed } from '@kiln-and-clay/cms-config/seed'
 import { getPayload } from 'payload'
 
 /**

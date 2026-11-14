@@ -1,4 +1,8 @@
-import { MAX_TAGS_PER_REQUEST, REVALIDATE_SECRET_HEADER, TAG_PATTERN } from '@house/cms-config/tags'
+import {
+  MAX_TAGS_PER_REQUEST,
+  REVALIDATE_SECRET_HEADER,
+  TAG_PATTERN,
+} from '@kiln-and-clay/cms-config/tags'
 import { revalidateTag } from 'next/cache'
 
 import { secretMatches } from '../../../lib/revalidate-auth'
