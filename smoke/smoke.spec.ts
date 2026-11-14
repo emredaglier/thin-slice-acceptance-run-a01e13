@@ -8,15 +8,15 @@
 // those by hand.
 import { type APIResponse } from '@playwright/test'
 
-import { PLACEHOLDER_SITE } from '../packages/cms-config/src/seed/placeholder.ts'
-import { LIVE_EDIT, UNKNOWN_PATH } from './fixture-data.ts'
+import { content } from '../apps/web/src/content.ts'
+import { UNKNOWN_PATH } from './fixture-data.ts'
 import { expect, revalidateSecret, test } from './fixtures.ts'
 import { publicRoutes } from './routes.ts'
 import { sweepProblems } from './sweep.ts'
 
 /**
- * Every public route of the site, found from its pages (smoke/routes.ts), `/examples/glow` (noindex
- * by design, but public) included. A project gives each dynamic page a sample URL there. The checks
+ * Every public route of the site, found from its pages (smoke/routes.ts). A project gives each
+ * dynamic page a sample URL there. The checks
  * that need a route to be indexable only look at response headers, which a meta robots tag does not
  * change, so no route needs an exemption.
  */
@@ -31,15 +31,11 @@ const asHtml = (text: string) =>
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#x27;')
 
-/**
- * What only the seeded database holds (read from the seed, not restated): an empty page would also
- * carry the layout's default title, so the checks look for the intro too. The tagline is not here:
- * smoke/run.ts replaces it with LIVE_EDIT.tagline before the specs run (see "live edits").
- */
-const SEEDED = {
-  name: asHtml(PLACEHOLDER_SITE.name),
-  intro: asHtml(PLACEHOLDER_SITE.intro),
-  description: asHtml(PLACEHOLDER_SITE.defaultDescription),
+/** What the page's content module says (apps/web/src/content.ts), as React writes it into HTML. */
+const EXPECTED = {
+  name: asHtml(content.hero.name),
+  pitch: asHtml(content.hero.pitch),
+  about: asHtml(content.about.text),
 }
 
 const escapeRegExp = (text: string) => text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
@@ -57,11 +53,11 @@ test.describe('public routes', () => {
     })
   }
 
-  test('home shows the seeded text, and the head script has run', async ({ page, visit }) => {
+  test('home shows its content, and the head script has run', async ({ page, visit }) => {
     const failures = await visit('/')
-    await expect(page.locator('main#main h1')).toHaveText(PLACEHOLDER_SITE.name)
-    await expect(page.getByText(LIVE_EDIT.tagline)).toBeVisible()
-    await expect(page.getByText(PLACEHOLDER_SITE.intro)).toBeVisible()
+    await expect(page.locator('main#main h1')).toHaveText(content.hero.name)
+    await expect(page.getByText(content.hero.pitch)).toBeVisible()
+    await expect(page.getByText(content.about.text)).toBeVisible()
     await expect(page.locator('html[data-js]')).toHaveCount(1)
     expect(failures).toEqual([])
   })
@@ -98,11 +94,11 @@ test.describe('server HTML', () => {
     const response = await request.get('/')
     expect(response.status()).toBe(200)
     const html = await response.text()
-    expect(html).toMatch(new RegExp(`<h1[^>]*>${escapeRegExp(SEEDED.name)}</h1>`))
-    expect(html).toContain(asHtml(LIVE_EDIT.tagline))
-    expect(html).toContain(SEEDED.intro)
-    expect(html).toContain(`<title>${SEEDED.name}</title>`)
-    expect(html).toContain(`<meta name="description" content="${SEEDED.description}"`)
+    expect(html).toMatch(new RegExp(`<h1[^>]*>${escapeRegExp(EXPECTED.name)}</h1>`))
+    expect(html).toContain(EXPECTED.pitch)
+    expect(html).toContain(EXPECTED.about)
+    expect(html).toContain(`<title>${EXPECTED.name}</title>`)
+    expect(html).toContain(`<meta name="description" content="${EXPECTED.pitch}"`)
     expect(html).toMatch(/<html[^>]*\slang="en"/)
     expect(html).toContain('<main')
   })
@@ -133,15 +129,5 @@ test.describe('routes and headers', () => {
     for (const route of PUBLIC_ROUTES) {
       expect((await request.get(route)).headers()['x-robots-tag'], route).toBeUndefined()
     }
-  })
-})
-
-// smoke/run.ts saved this through the Local API after warming the cache, so only the revalidate
-// hook (cms -> web, over HTTP with the shared secret) can make it show.
-test.describe('live edits', () => {
-  test('a tagline saved in the CMS shows on the next request', async ({ request }) => {
-    const html = await (await request.get('/')).text()
-    expect(html).toContain(asHtml(LIVE_EDIT.tagline))
-    expect(html).not.toContain(asHtml(PLACEHOLDER_SITE.tagline))
   })
 })

@@ -1,5 +1,5 @@
 {
-  "name": "@house/web",
+  "name": "@kiln-and-clay/web",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -10,9 +10,9 @@
     "typecheck": "next typegen && tsc --noEmit"
   },
   "dependencies": {
-    "@house/cms-config": "workspace:*",
-    "@house/motion": "workspace:*",
-    "@house/ui": "workspace:*",
+    "@kiln-and-clay/cms-config": "workspace:*",
+    "@kiln-and-clay/motion": "workspace:*",
+    "@kiln-and-clay/ui": "workspace:*",
     "@payloadcms/db-sqlite": "3.90.2",
     "@payloadcms/next": "3.90.2",
     "@payloadcms/richtext-lexical": "3.90.2",

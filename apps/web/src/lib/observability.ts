@@ -1,6 +1,6 @@
 // The listener for motion faults (ADR-0011, packages/motion README "The engine contract", rule 4).
 // Pure and free of any SDK, so tests stay cheap. A project fills in `reportFault`.
-import { MOTION_FAULT_EVENT } from '@house/motion'
+import { MOTION_FAULT_EVENT } from '@kiln-and-clay/motion'
 
 export type FaultSink = (kind: string, detail: string | undefined) => void
 

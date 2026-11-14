@@ -57,13 +57,13 @@ describe('addTick', () => {
     vi.spyOn(console, 'error').mockImplementation(() => {})
     const faults: unknown[] = []
     const listen = (e: Event) => faults.push((e as CustomEvent).detail)
-    window.addEventListener('house:motion-fault', listen)
+    window.addEventListener('kiln-and-clay:motion-fault', listen)
     const broken = () => {
       throw new Error('boom')
     }
     addTick(broken)
     frame(8)
-    window.removeEventListener('house:motion-fault', listen)
+    window.removeEventListener('kiln-and-clay:motion-fault', listen)
     expect(faults).toEqual([{ kind: 'ticker-callback-removed', detail: 'broken' }])
   })
 

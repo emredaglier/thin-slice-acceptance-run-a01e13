@@ -51,7 +51,7 @@ function copyHooks<T extends Record<string, unknown> | undefined>(hooks: T): Non
 const emailAdapter: PayloadEmailAdapter = ({ payload }) => ({
   name: 'console',
   defaultFromAddress: 'noreply@example.com',
-  defaultFromName: 'House starter',
+  defaultFromName: 'Kiln & Clay',
   sendEmail: async (message) => {
     payload.logger.info({ msg: `Email not sent (no adapter). Subject: "${message.subject}"` })
   },

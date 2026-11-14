@@ -1,29 +1,55 @@
 import type { Metadata } from 'next'
 
-import { getSite } from '../data/site'
+import { content } from '../content'
 
-// Content comes from the database at request time (cached by tag), never at build time.
-export const dynamic = 'force-dynamic'
-
-export async function generateMetadata(): Promise<Metadata> {
-  const site = await getSite()
-  return {
-    title: site.name,
-    description: site.defaultDescription || undefined,
-  }
+export const metadata: Metadata = {
+  title: content.title,
+  description: content.hero.pitch,
 }
 
-/**
- * Placeholder home page. Everything on it is rendered on the server from the Site global, so it
- * is complete with JavaScript off (ADR-0008). Replace it with the project's own page.
- */
-export default async function Home() {
-  const site = await getSite()
+/** The one page. Plain server HTML from the content module, complete with JavaScript off (ADR-0008). */
+export default function Home() {
+  const { hero, about, classes, contact, footer } = content
   return (
-    <main className="mx-auto max-w-2xl p-8" id="main">
-      <h1 className="text-4xl font-semibold">{site.name}</h1>
-      {site.tagline ? <p className="mt-2 text-lg">{site.tagline}</p> : null}
-      {site.intro ? <p className="mt-6">{site.intro}</p> : null}
-    </main>
+    <>
+      <main className="mx-auto max-w-2xl p-8" id="main">
+        <h1 className="text-4xl font-semibold">{hero.name}</h1>
+        <p className="mt-2 text-lg">{hero.pitch}</p>
+
+        <section>
+          <h2 className="mt-8 text-2xl font-semibold">{about.heading}</h2>
+          <p>{about.text}</p>
+        </section>
+
+        <section>
+          <h2 className="mt-8 text-2xl font-semibold">{classes.heading}</h2>
+          <ul>
+            {classes.items.map((item) => (
+              <li key={item.name}>
+                {item.name}: {item.length}, {item.price}
+              </li>
+            ))}
+          </ul>
+          <p>{classes.note}</p>
+        </section>
+
+        <section>
+          <h2 className="mt-8 text-2xl font-semibold">{contact.heading}</h2>
+          <address className="not-italic">
+            <a href={`mailto:${contact.email}`}>{contact.email}</a>
+            <br />
+            {contact.address}
+          </address>
+        </section>
+      </main>
+      <footer className="mx-auto max-w-2xl p-8 text-sm">
+        <p>{footer.owner}</p>
+        <p>{footer.address}</p>
+        <p>{footer.email}</p>
+        <p>{footer.kvk}</p>
+        <p>{footer.vatId}</p>
+        <p>{footer.privacy}</p>
+      </footer>
+    </>
   )
 }

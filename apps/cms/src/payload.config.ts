@@ -1,7 +1,7 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { buildSiteConfig, siteConfigOptionsFromEnv } from '@house/cms-config'
+import { buildSiteConfig, siteConfigOptionsFromEnv } from '@kiln-and-clay/cms-config'
 
 const dirname = path.dirname(fileURLToPath(import.meta.url))
 

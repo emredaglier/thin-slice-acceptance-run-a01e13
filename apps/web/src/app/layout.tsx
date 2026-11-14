@@ -1,12 +1,12 @@
-import { HEAD_SCRIPT } from '@house/ui'
-import { fontVariables } from '@house/ui/fonts'
+import { HEAD_SCRIPT } from '@kiln-and-clay/ui'
+import { fontVariables } from '@kiln-and-clay/ui/fonts'
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 
 import './globals.css'
 import { MotionFaultReporter } from './MotionFaultReporter'
 
-export const metadata: Metadata = { title: 'Project name' }
+export const metadata: Metadata = { title: 'Kiln & Clay' }
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (

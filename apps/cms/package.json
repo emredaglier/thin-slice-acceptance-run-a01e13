@@ -1,5 +1,5 @@
 {
-  "name": "@house/cms",
+  "name": "@kiln-and-clay/cms",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -22,7 +22,7 @@
     "typescript": "5.9.3"
   },
   "dependencies": {
-    "@house/cms-config": "workspace:*",
+    "@kiln-and-clay/cms-config": "workspace:*",
     "@payloadcms/next": "3.90.2",
     "@payloadcms/richtext-lexical": "3.90.2",
     "@payloadcms/ui": "3.90.2",

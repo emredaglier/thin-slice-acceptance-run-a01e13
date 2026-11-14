@@ -1,5 +1,5 @@
 /** The event every motion piece reports a silent failure through. Observability listens for it. */
-export const MOTION_FAULT_EVENT = 'house:motion-fault'
+export const MOTION_FAULT_EVENT = 'kiln-and-clay:motion-fault'
 
 export type MotionFaultKind = 'ticker-callback-removed' | 'gl-context-lost' | 'gl-error'
 

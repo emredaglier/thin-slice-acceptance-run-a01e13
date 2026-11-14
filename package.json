@@ -12,12 +12,12 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "build": "pnpm -r --workspace-concurrency=1 build",
-    "dev": "pnpm --filter @house/web dev",
-    "start": "pnpm --filter @house/web start",
+    "dev": "pnpm --filter @kiln-and-clay/web dev",
+    "start": "pnpm --filter @kiln-and-clay/web start",
     "perf": "node perf/run.ts",
     "perf:check": "node perf/check.ts",
-    "migrate": "pnpm --filter @house/cms migrate",
-    "seed": "pnpm --filter @house/cms seed",
+    "migrate": "pnpm --filter @kiln-and-clay/cms migrate",
+    "seed": "pnpm --filter @kiln-and-clay/cms seed",
     "smoke": "node smoke/run.ts"
   },
   "devDependencies": {
