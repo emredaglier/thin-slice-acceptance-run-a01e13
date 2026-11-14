@@ -106,3 +106,19 @@ browsers row of the G5 go/no-go checklist.
 
 ➡️ The last two versions of Safari (iOS and macOS), Chrome (Android and desktop), Firefox and Edge.
 Layout checked from 360 px wide upward.
+
+## Comments
+
+### Owner, 2026-11-14T05:11:24.652Z
+
+1: yes (2026-12-01).
+2: yes.
+3: yes, option A.
+4: here are the facts, so no placeholders are needed. Studio: Kiln & Clay, a small pottery studio in Utrecht. Pitch idea: slow weekends at the wheel. About: run by potter Mira de Vries since 2019; small groups of six, all clay, glazes and two firings included; beginners welcome. Classes: (1) Taster Wheel Session, 2 hours, EUR 45; (2) Weekend Wheel Course, two days of 4 hours, EUR 180; (3) Glaze & Fire Workshop, 3 hours, EUR 60. Email: hello@kilnandclay.example. Address: Oudegracht 210, 3511 NS Utrecht, Netherlands.
+5: yes. Country: the Netherlands. Operator legal name: Kiln & Clay, Mira de Vries (sole trader), KvK 00000000 placeholder is fine.
+6: no deploy in this run. This is a thin-slice acceptance run: G4 and G5 are judged on the studio preview, and G5 ends with the release tag. Keep the starter infra as shipped; leave PROJECT_NAME as kiln-and-clay and DOMAIN as kilnandclay.example.
+7: no analytics and no monitoring in this run (no live domain). Keep the privacy note short and say the site sets no cookies.
+8: yes.
+9: yes.
+10: yes.
+11: yes.
