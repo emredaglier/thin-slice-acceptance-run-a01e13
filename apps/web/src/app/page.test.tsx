@@ -1,7 +1,7 @@
 import { renderToStaticMarkup } from 'react-dom/server'
 import { expect, it } from 'vitest'
 
-import Home, { metadata } from './page'
+import Home, { dynamic, metadata } from './page'
 
 const html = () => renderToStaticMarkup(Home())
 
@@ -45,4 +45,8 @@ it('sets the title and the pitch as the description', () => {
     title: 'Kiln & Clay',
     description: 'Slow weekends at the wheel in Utrecht.',
   })
+})
+
+it('renders per request, so the HTML never gets a shared-cache lifetime (ADR-0006)', () => {
+  expect(dynamic).toBe('force-dynamic')
 })
