@@ -1,1 +1,56 @@
 @import 'tailwindcss';
+
+/* The colours are set on <html> from packages/ui/src/tokens.ts (--paper, --ink, ...), so the
+   contrast test and the page share one source. Fraunces comes from fonts.ts as --font-fraunces;
+   body text keeps Tailwind's system sans stack. */
+@theme inline {
+  --color-paper: var(--paper);
+  --color-sand: var(--sand);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-clay: var(--clay);
+  --font-heading: var(--font-fraunces), Georgia, 'Times New Roman', serif;
+}
+
+@layer base {
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.65;
+  }
+
+  h1,
+  h2 {
+    font-family: var(--font-heading);
+    font-weight: 600; /* the one weight fonts.ts loads */
+    line-height: 1.15;
+  }
+
+  a {
+    color: var(--clay);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    text-decoration-thickness: 1px;
+  }
+
+  a:hover {
+    color: var(--ink);
+    text-decoration-thickness: 2px;
+  }
+
+  /* Clay on paper and on sand is far above the 3:1 a focus ring needs (tokens.test.ts). */
+  a:focus-visible {
+    outline: 3px solid var(--clay);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Transitions only on hover and focus, and none for people who ask for less motion. */
+  @media (prefers-reduced-motion: no-preference) {
+    a {
+      transition:
+        color 150ms ease,
+        text-decoration-thickness 150ms ease;
+    }
+  }
+}

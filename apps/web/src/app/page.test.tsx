@@ -17,10 +17,12 @@ it('renders the content as plain server HTML, so it needs no JavaScript', () => 
 
 it('lists the three classes with their prices, and the VAT line', () => {
   const out = html()
-  expect(out).toMatch(/<ul>(<li>.*<\/li>){3}<\/ul>/)
-  expect(out).toContain('Taster Wheel Session: 2 hours, €45')
-  expect(out).toContain('Weekend Wheel Course: two days of 4 hours, €180')
-  expect(out).toContain('Glaze &amp; Fire Workshop: 3 hours, €60')
+  expect(out).toMatch(/<ul[^>]*>(<li[^>]*>.*?<\/li>){3}<\/ul>/)
+  // Each item is name, length and price in their own elements; tags become "|" so order is checked.
+  const items = (out.match(/<li[^>]*>.*?<\/li>/g) ?? []).map((li) => li.replace(/<[^>]+>/g, '|'))
+  expect(items[0]).toMatch(/Taster Wheel Session.*2 hours.*€45/)
+  expect(items[1]).toMatch(/Weekend Wheel Course.*two days of 4 hours.*€180/)
+  expect(items[2]).toMatch(/Glaze &amp; Fire Workshop.*3 hours.*€60/)
   expect(out).toContain('Prices include VAT.')
 })
 
